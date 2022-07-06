@@ -1,12 +1,10 @@
 import { AiOutlineInstagram } from 'react-icons/ai'
 import { FaFacebook, FaGithub, FaTiktok, FaTwitter } from 'react-icons/fa'
 import ThemeToggle from './ThemeToggle'
-import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+
 function Footer() {
     const [subscribe, setSubscribe] = useState(false)
-
-    const navigate = useNavigate()
 
     const goToSubscribe = (e) => {
         e.preventDefault()
@@ -51,11 +49,6 @@ function Footer() {
                                             <button className='bg-button text-btnText px-4 p-2 w-full rounded-2xl shadow-xl hover:shadow-2xl md:w-auto my-2'>Subscribe</button>
                                         </div>
                                         : <p>Thank you</p>}
-
-
-                                    {/* <input className='bg-primary border border-input p-2 mr-2 w-full shadow-xl rounded-2xl md:w-auto'
-                                        type='email' placeholder='Enter mail' />
-                                    <button className='bg-button text-btnText px-4 p-2 w-full rounded-2xl shadow-xl hover:shadow-2xl md:w-auto my-2'>Subscribe</button> */}
                                 </form>
                             </div>
                             <div className='flex py-4 justify-between text-accent'>
