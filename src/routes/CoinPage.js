@@ -20,6 +20,12 @@ function CoinPage() {
         await fetch(url).then(resp => resp.json()).then(data => setCoinDetails(data))
     }
 
+    const coinDescription = (JSON.stringify(coinDetails.description?.en))
+    if(coinDescription){
+            const jsonP = (JSON.parse(coinDescription))
+    console.log(jsonP)
+    }
+
     const coinPath = doc(db,'users', `${user?.email}`);
     const saveCoin = async()=> {
         if(user?.email){
@@ -40,13 +46,17 @@ function CoinPage() {
         }
     }
 
-
     useEffect(() => {
         getCoinDetails()
+        window.scrollTo({ 
+            top: 0,
+            left: 0,
+            behavior: 'smooth'})
     }, [url])
 
     return (
         <div className='rounded-div my-12 py-8'>
+            {coinDetails?.image ? 
             <div className='flex py-8'>
                 <img className='w-20 mr-8'
                     src={coinDetails.image?.large} alt="/" />
@@ -55,6 +65,7 @@ function CoinPage() {
                     <p>({coinDetails.symbol?.toUpperCase()}/ USD) {saved === false? (<AiOutlineStar onClick={saveCoin}/>) : (<AiFillStar /> )}  </p>
                 </div>
             </div>
+            : null }
 
             <div className='grid md:grid-cols-2 gap-8'>
                 <div>
@@ -148,10 +159,9 @@ function CoinPage() {
                 </div>
             </div>
 
-            <div className='py-4'>
+            {/* <div className='py-4'>
                 <p className='text-xl font-bold'>About {coinDetails.name}</p>
-                {/* <p>{coinDetails.description}</p> */}
-            </div>
+            </div> */}
         </div>
     )
 }

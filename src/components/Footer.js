@@ -1,8 +1,17 @@
 import { AiOutlineInstagram } from 'react-icons/ai'
 import { FaFacebook, FaGithub, FaTiktok, FaTwitter } from 'react-icons/fa'
 import ThemeToggle from './ThemeToggle'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 function Footer() {
+    const [subscribe, setSubscribe] = useState(false)
 
+    const navigate = useNavigate()
+
+    const goToSubscribe = (e) => {
+        e.preventDefault()
+        setSubscribe(true)
+    }
     return (
         <div className='rounded-div mt-8 pt-8 text-primary'>
             <div className='grid md:grid-cols-2'>
@@ -32,12 +41,21 @@ function Footer() {
                             <div className='flex justify-center md:justify-end py-4 md:py-0 md:pb-4 mt-[-1rem]'>
                                 <ThemeToggle />
                             </div>
-                            <p className='text-center md:text-right '>Sign up for crypto</p>
+                            <p className='text-center md:text-right '>Sign up for crypto news</p>
                             <div className='py-4'>
-                                <form>
-                                    <input className='bg-primary border border-input p-2 mr-2 w-full shadow-xl rounded-2xl md:w-auto'
+                                <form onSubmit={goToSubscribe} >
+                                    {subscribe == false ?
+                                        <div>            
+                                            <input className='bg-primary border border-input p-2 mr-2 w-full shadow-xl rounded-2xl md:w-auto'
+                                            type='email' placeholder='Enter mail' />
+                                            <button className='bg-button text-btnText px-4 p-2 w-full rounded-2xl shadow-xl hover:shadow-2xl md:w-auto my-2'>Subscribe</button>
+                                        </div>
+                                        : <p>Thank you</p>}
+
+
+                                    {/* <input className='bg-primary border border-input p-2 mr-2 w-full shadow-xl rounded-2xl md:w-auto'
                                         type='email' placeholder='Enter mail' />
-                                    <button className='bg-button text-btnText px-4 p-2 w-full rounded-2xl shadow-xl hover:shadow-2xl md:w-auto my-2'>Sign up</button>
+                                    <button className='bg-button text-btnText px-4 p-2 w-full rounded-2xl shadow-xl hover:shadow-2xl md:w-auto my-2'>Subscribe</button> */}
                                 </form>
                             </div>
                             <div className='flex py-4 justify-between text-accent'>
